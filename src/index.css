@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@keyframes fade-in {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@theme {
+  --animate-fade-in: fade-in 0.150s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
@@ -9,7 +18,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+*, *::before *::after {
+  box-sizing: border-box;
+  @apply outline-stone-400;
+}
+
+
 body {
-  min-width: 100vw;
-  min-height: 100svh;
+  @apply bg-stone-50 text-stone-800 text-base;
+}
+
+html:has(dialog[open]:modal) {
+  overflow: hidden;
+  scrollbar-gutter: stable;
 }

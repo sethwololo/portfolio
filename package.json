@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.7",
+    "clsx": "^2.1.1",
     "react": "^19.0.0-rc-100dfd7dab-20240701",
-    "react-dom": "^19.0.0-rc-100dfd7dab-20240701"
+    "react-dom": "^19.0.0-rc-100dfd7dab-20240701",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.0-alpha.16",

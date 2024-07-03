@@ -12,7 +12,7 @@ export function ContactLink({
   linkHref,
 }: ContactLinkProps) {
   return (
-    <p className="text-md inline-flex gap-1">
+    <p className="text-base inline-flex gap-1">
       {icon}
       <b>{title}:</b>{' '}
       <a href={linkHref} className="text-blue-600">

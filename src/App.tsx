@@ -1,29 +1,25 @@
 import { Envelope, GithubLogo, LinkedinLogo } from '@phosphor-icons/react'
 
 import { ContactLink } from './components/contact-link'
-import { ProjectCard } from './components/project-card'
-import { ProjectModal } from './components/project-modal'
+import { ProjectGrid } from './components/project-grid'
 import { yearDiff } from './utils/yearDiff'
 
 export function App() {
   const expTime = yearDiff(new Date(2021, 0, 1), new Date())
 
   return (
-    <main className="flex flex-col w-full gap-16 max-w-[1150px] mx-auto h-full p-4">
-      <ProjectModal />
-
-      <div className="flex flex-col max-w-fit">
-        <h1 className="text-6xl font-bold">
-          <span className="text-4xl font-normal">Olá, sou</span>
-          <br />
+    <main className="flex flex-col w-full gap-32 max-w-[1028px] mx-auto h-full p-4 bg-stone-50">
+      <h1 className="flex flex-col max-w-fit my-32 sm:my-48 ml-auto">
+        <span className="text-2xl sm:text-4xl font-normal">Olá, sou</span>
+        <strong className="text-4xl sm:text-6xl font-bold">
           Matheus Bezerra
-        </h1>
+        </strong>
         <span className="text-xl self-end">desenvolvedor web</span>
-      </div>
+      </h1>
 
-      <section id="sobre-mim">
-        <h2 className="text-2xl font-bold">Sobre mim</h2>
-        <p className="text-lg">
+      <section id="sobre-mim" className="flex flex-col gap-4">
+        <h2 className="text-xl sm:text-2xl font-bold">Sobre mim</h2>
+        <p className="text-md sm:text-lg text-pretty">
           Atuo como desenvolvedor web há {expTime} anos criando interfaces
           intuitivas com foco em acessibilidade e usabilidade. Acredito em
           proporcionar às pessoas a mesma experiência que eu gostaria de ter,
@@ -31,26 +27,19 @@ export function App() {
         </p>
       </section>
 
-      <section id="projetos">
-        <h2 className="text-2xl font-bold">Projetos</h2>
-        <p className="text-lg mb-4">
+      <section id="projetos" className="flex flex-col gap-4">
+        <h2 className="text-xl sm:text-2xl font-bold">Projetos</h2>
+        <p className="text-md sm:text-lg text-pretty">
           Esses foram os projetos nos quais atuei, seja no processo de criação,
           implementação ou manuntenção
         </p>
 
-        <div className="grid grid-cols-4 gap-4">
-          {Array.from({ length: 7 }).map((_, index) => (
-            <ProjectCard
-              key={`project-${index}`}
-              name={`Projeto ${index + 1}`}
-            />
-          ))}
-        </div>
+        <ProjectGrid />
       </section>
 
-      <section id="contato">
-        <h2 className="text-2xl font-bold">Onde me Encontrar</h2>
-        <p className="text-lg mb-4">
+      <section id="contato" className="flex flex-col gap-4">
+        <h2 className="text-xl sm:text-2xl font-bold">Onde me encontrar</h2>
+        <p className="text-md sm:text-lg text-pretty">
           Estou sempre aberto a novas oportunidades e desafios. Entre em contato
           comigo!
         </p>
