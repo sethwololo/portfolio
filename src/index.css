@@ -1,34 +1,68 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @keyframes fade-in {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-card {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @theme {
-  --animate-fade-in: fade-in 0.150s cubic-bezier(0.4, 0, 0.2, 1);
+  --animate-fade-in: fade-in 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --animate-fade-in-card: fade-in-card 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --color-viridian-green-50: #f5f8f6;
+  --color-viridian-green-100: #e0e7e3;
+  --color-viridian-green-200: #c0cfc5;
+  --color-viridian-green-300: #98b0a1;
+  --color-viridian-green-400: #728f7d;
+  --color-viridian-green-500: #62816f;
+  --color-viridian-green-600: #455c4f;
+  --color-viridian-green-700: #3a4b42;
+  --color-viridian-green-800: #313e37;
+  --color-viridian-green-900: #2b3630;
+  --color-viridian-green-950: #161d1a;
+
+  --default-font-family: 'Martian Mono', monospace;
 }
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-*, *::before *::after {
-  box-sizing: border-box;
-  @apply outline-stone-400;
-}
+@layer base {
+  *,
+  *::before,
+  *::after {
+    @apply box-border outline-viridian-green-500 outline-dashed outline-0;
 
+    &:focus-visible {
+      @apply outline-2 outline-offset-2;
+    }
+  }
 
-body {
-  @apply bg-stone-50 text-stone-800 text-base;
-}
+  body {
+    @apply bg-stone-50 text-stone-700 text-base;
+  }
 
-html:has(dialog[open]:modal) {
-  overflow: hidden;
-  scrollbar-gutter: stable;
+  html:has(dialog[open]:modal) {
+    overflow: hidden;
+    scrollbar-gutter: stable;
+  }
 }

@@ -12,12 +12,21 @@ export function ContactLink({
   linkHref,
 }: ContactLinkProps) {
   return (
-    <p className="text-base inline-flex gap-1">
-      {icon}
-      <b>{title}:</b>{' '}
-      <a href={linkHref} className="text-blue-600">
-        {linkTitle}
-      </a>
-    </p>
+    <div className="flex items-center gap-2 text-base">
+      <span className="shrink-0" aria-hidden>
+        {icon}
+      </span>
+      <p className="">
+        <b>{title}: </b>
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href={linkHref}
+          className="text-viridian-green-600 hover:underline underline-offset-4 break-all"
+        >
+          {linkTitle}
+        </a>
+      </p>
+    </div>
   )
 }

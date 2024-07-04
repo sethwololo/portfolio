@@ -1,6 +1,14 @@
+'use client'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
-import { type ButtonHTMLAttributes, useRef, useState } from 'react'
+import {
+  type ButtonHTMLAttributes,
+  Suspense,
+  use,
+  useRef,
+  useState,
+} from 'react'
 
+import { ProjectsContext } from '../contexts/ProjectsContext'
 import { cn } from '../utils/cn'
 import { ProjectCard } from './project-card'
 import { ProjectModal } from './project-modal'
@@ -18,13 +26,14 @@ const PgButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => (
 )
 
 export function ProjectGrid() {
-  const mockData = Array.from({ length: 20 }, (_, i) => i + 1)
+  const projects = use(ProjectsContext)
 
   const modalRef = useRef<HTMLDialogElement>(null)
+  const [currentProjectId, setCurrentProjectId] = useState(0)
 
-  const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 6
-  const pages = Math.ceil(mockData.length / itemsPerPage)
+  const pages = Math.ceil(projects.length / itemsPerPage)
+  const [currentPage, setCurrentPage] = useState(1)
 
   const handleNextPage = () => {
     if (currentPage < pages) {
@@ -38,68 +47,76 @@ export function ProjectGrid() {
     }
   }
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (projectId: number) => {
+    setCurrentProjectId(projectId)
     modalRef.current?.showModal()
   }
 
   return (
     <div className="flex flex-col gap-4">
-      <ProjectModal ref={modalRef} project={undefined} />
+      <ProjectModal ref={modalRef} projectId={currentProjectId} />
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 w-full">
-        {mockData
-          .reverse()
-          .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-          .map((item) => (
-            <ProjectCard
-              key={`project-${item}-card`}
-              name={`Projeto ${item}`}
-              onClick={handleOpenModal}
-            />
-          ))}
-      </div>
+      <Suspense fallback="Carregando...">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 w-full">
+          {projects
+            .reverse()
+            .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+            .map((item) => (
+              <ProjectCard
+                key={`project-${item.id}-card`}
+                name={item.name}
+                onClick={() => handleOpenModal(item.id)}
+                imageUrl={item.image}
+                aria-label={`Card do projeto ${item.name}`}
+              />
+            ))}
+        </div>
 
-      <nav aria-label="Paginação">
-        <ul className="flex items-center w-fit mx-auto gap-2">
-          <li>
-            <PgButton
-              aria-label="Anterior"
-              onClick={handlePreviousPage}
-              disabled={currentPage === 1}
-            >
-              <CaretLeft weight="bold" />
-            </PgButton>
-          </li>
-          <li className="text-base">
-            <span className="sr-only">Página selecionada:</span>
-            <select
-              className="rounded-md px-2 py-1 border border-stone-400 bg-transparent text-base"
-              value={currentPage}
-              onChange={(e) => setCurrentPage(Number(e.target.value))}
-            >
-              {Array.from({ length: pages }, (_, i) => i + 1).map((page) => (
-                <option
-                  value={page}
-                  key={`pagination-option-${page}`}
-                  className="bg-stone-100 rounded-md border-amber-400"
-                >
-                  {page}
-                </option>
-              ))}
-            </select>{' '}
-            de {pages}
-          </li>
-          <li>
-            <PgButton
-              aria-label="Próximo"
-              onClick={handleNextPage}
-              disabled={currentPage === pages}
-            >
-              <CaretRight weight="bold" />
-            </PgButton>
-          </li>
-        </ul>
-      </nav>
+        <nav aria-label="Paginação">
+          <ul className="flex items-center w-fit mx-auto gap-2">
+            <li>
+              <PgButton
+                aria-label="Anterior"
+                onClick={handlePreviousPage}
+                disabled={currentPage === 1}
+              >
+                <CaretLeft weight="bold" />
+              </PgButton>
+            </li>
+            <li className="text-base">
+              <label className="sr-only" htmlFor="pagination-select">
+                Página selecionada:
+              </label>
+              <select
+                id="pagination-select"
+                className="appearance-none rounded-md px-3 py-1 border border-viridian-green-400 bg-transparent text-base focus:outline-0 focus-visible:outline-2"
+                value={currentPage}
+                onChange={(e) => setCurrentPage(Number(e.target.value))}
+              >
+                {Array.from({ length: pages }, (_, i) => i + 1).map((page) => (
+                  <option
+                    value={page}
+                    key={`pagination-option-${page}`}
+                    className="bg-stone-50 text-stone-800"
+                  >
+                    {page}
+                  </option>
+                ))}
+              </select>{' '}
+              de {pages}
+            </li>
+            <li>
+              <PgButton
+                aria-label="Próximo"
+                onClick={handleNextPage}
+                disabled={currentPage === pages}
+              >
+                <CaretRight weight="bold" />
+              </PgButton>
+            </li>
+          </ul>
+        </nav>
+      </Suspense>
     </div>
   )
 }
