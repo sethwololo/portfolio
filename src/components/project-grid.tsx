@@ -18,8 +18,8 @@ const PgButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => (
     {...props}
     type="button"
     className={cn(
-      'flex items-center aspect-square p-2 rounded-full cursor-pointer',
-      'transition-colors text-stone-800 hover:bg-stone-200',
+      'flex items-center aspect-square p-2 rounded-full cursor-pointer bg-transparent',
+      'transition-colors text-stone-800 hover:bg-stone-200 disabled:bg-transparent',
       'disabled:opacity-50',
     )}
   />

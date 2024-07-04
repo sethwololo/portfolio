@@ -18,7 +18,7 @@ export const ProjectsProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     fetch('/projects.json')
       .then((res) => res.json())
-      .then((data) => setProjects(data))
+      .then((data) => setProjects(data.reverse()))
   }, [])
 
   return <ProjectsContext value={projects}>{children}</ProjectsContext>
