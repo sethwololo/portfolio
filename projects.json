@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "name": "Viaje na nossa história",
+    "url": "https://www12.senado.leg.br/noticias/25anos",
+    "stack": "React, Typescript, TS Query, Tailwind CSS",
+    "description": "O 'Viaje na nossa história' é um portal comemorativo de 25 anos da Agência Senado. Nele, é possível acessar uma linha do tempo com os principais eventos do dia selecionado.",
+    "image": "/images/viaje-sn.png"
+  },
+  {
+    "id": 3,
+    "name": "8 de janeiro - Reflexões do Senado - 100 dias da invasão",
+    "url": "https://www12.senado.leg.br/noticias/exposicao-8-de-janeiro-reflexoes",
+    "stack": "React, Typescript, Windi CSS",
+    "description": "O portal '8 de janeiro - Reflexões do Senado - 100 dias da invasão' é uma exposição virtual que acompanha a exposição física.",
+    "image": "/images/exposicao-8-janeiro.png"
+  },
+  {
+    "id": 4,
+    "name": "25 anos de imagens, sons e histórias",
+    "url": "https://www12.senado.leg.br/noticias/exposicao-25anos",
+    "stack": "React, Typescript, Tailwind CSS",
+    "description": "O portal '25 anos de imagens, sons e histórias' é uma exposição virtual comemorativa de 25 anos da Agência Senado, contendo fotos de momentos importantes acompanhadas de reportagens da Rádio Senado.",
+    "image": "/images/exposicao-25-anos.png"
+  },
+  {
+    "id": 5,
+    "name": "BuscaParlamentar",
+    "url": "https://busca-parlamentar.vercel.app/",
+    "ghUrl": "https://github.com/sethwololo/busca-parlamentar-next",
+    "stack": "React, TypeScript, NextJS, Chakra UI",
+    "description": "O 'BuscaParlamentar' é uma aplicação que utiliza a API de Dados Abertos do Senado Federal para disponibilizar dados dos senadores e listar as comissões das quais eles fazem parte.",
+    "image": "/images/busca-parlamentar.png"
+  },
+  {
+    "id": 6,
+    "name": "Microblog Senado Notícias",
+    "url": "https://www12.senado.leg.br/noticias/ao-vivo",
+    "stack": "React, Typescript, TS Query, CSS Modules",
+    "description": "O microblog do Senado Notícias é uma parte do site em que é possível acompanhar algumas notícias em tempo real. A reescrita do front-end do microblog foi um projeto particularmente desafiador devido ao número de posts em conteúdos como a CPI da Pandemia.",
+    "image": "/images/microblog-sn.png"
+  }
+]
