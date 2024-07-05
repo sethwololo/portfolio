@@ -16,7 +16,7 @@ export const ProjectsProvider = ({ children }: PropsWithChildren) => {
   const [projects, setProjects] = useState<Project[]>([])
 
   useEffect(() => {
-    fetch('/projects.json')
+    fetch(window.location.href + '/projects.json')
       .then((res) => res.json())
       .then((data) => setProjects(data.reverse()))
   }, [])
