@@ -20,7 +20,7 @@ export function ProjectCard({ name, imageUrl, ...rest }: ProjectCardProps) {
     >
       <div className="bg-stone-200 w-full h-auto aspect-video">
         <img
-          src={imageUrl}
+          src={window.location.href + imageUrl}
           className="w-full h-auto object-cover aspect-video"
         />
       </div>

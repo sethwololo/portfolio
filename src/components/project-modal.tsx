@@ -58,7 +58,7 @@ export function ProjectModal({ ref, projectId }: ProjectModalProps) {
         <div className="w-full h-auto bg-stone-200 aspect-video border-b border-b-stone-300">
           <img
             className="w-full h-full object-cover"
-            src={project?.image}
+            src={window.location.href + project?.image}
             alt={`Imagem demonstrativa do projeto "${project?.name}"`}
           />
         </div>
