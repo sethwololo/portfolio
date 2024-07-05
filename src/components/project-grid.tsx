@@ -58,7 +58,6 @@ export function ProjectGrid() {
       <Suspense fallback="Carregando...">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 w-full">
           {projects
-            .reverse()
             .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
             .map((item) => (
               <ProjectCard
