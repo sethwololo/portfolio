@@ -1,4 +1,11 @@
-import { GithubLogo, Link, Quotes, Stack, X } from '@phosphor-icons/react'
+import {
+  GithubLogo,
+  Link,
+  LinkBreak,
+  Quotes,
+  Stack,
+  X,
+} from '@phosphor-icons/react'
 import { use, useMemo } from 'react'
 
 import { ProjectsContext } from '../contexts/ProjectsContext'
@@ -59,13 +66,15 @@ export function ProjectModal({ ref, projectId }: ProjectModalProps) {
         <div className="px-4 pt-4 pb-8 flex flex-col gap-4">
           <div className="flex gap-2 justify-between items-center">
             <div className="flex items-center gap-2 text-xl sm:text-3xl">
-              <Link
-                size={18}
-                weight="regular"
-                className={
-                  project?.url === '' ? 'text-transparent' : 'text-inherit'
-                }
-              />
+              {project?.url === '' ? (
+                <LinkBreak
+                  size={18}
+                  weight="regular"
+                  className="text-stone-700"
+                />
+              ) : (
+                <Link size={18} weight="regular" className="text-stone-700" />
+              )}
               <h1 className="inline-flex font-bold text-pretty flex-1">
                 {project?.url === '' ? (
                   project?.name

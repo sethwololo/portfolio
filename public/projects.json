@@ -8,14 +8,6 @@
     "image": "/images/viaje-sn.png"
   },
   {
-    "id": 2,
-    "name": "SECOM Whisper",
-    "url": "",
-    "stack": "React, Typescript, Python, FastAPI",
-    "description": "O SECOM Whisper é uma ferramenta interna para transcrição de mídias audiovisuais, permitindo baixar o resultado como TXT ou SRT.",
-    "image": "/images/secom-whisper.png"
-  },
-  {
     "id": 3,
     "name": "8 de janeiro - Reflexões do Senado - 100 dias da invasão",
     "url": "https://www12.senado.leg.br/noticias/exposicao-8-de-janeiro-reflexoes",
