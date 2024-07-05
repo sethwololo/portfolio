@@ -28,8 +28,6 @@ export function ProjectModal({ ref, projectId }: ProjectModalProps) {
     dialogRef.current?.close()
   }
 
-  console.log(ref.current?.attributes)
-
   return (
     <dialog
       ref={dialogRef}
