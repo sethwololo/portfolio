@@ -1,4 +1,3 @@
-'use client'
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
 import {
   type ButtonHTMLAttributes,

@@ -22,6 +22,7 @@ export function ProjectCard({ name, imageUrl, ...rest }: ProjectCardProps) {
         <img
           src={window.location.href + imageUrl}
           className="w-full h-auto object-cover aspect-video"
+          alt={`Imagem do projeto ${name}`}
         />
       </div>
       <p className="block p-2 text-left truncate text-ellipsis w-full border-t text-base border-t-stone-300">

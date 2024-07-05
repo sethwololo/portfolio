@@ -23,18 +23,17 @@ export function App() {
       <section id="sobre-mim" className="flex flex-col gap-4">
         <SectionTitle>sobre mim</SectionTitle>
         <SectionText>
-          Atuo como desenvolvedor web há {expTime} anos criando interfaces
-          intuitivas com foco em acessibilidade e usabilidade. Acredito em
+          atuo como desenvolvedor web há {expTime} anos, criando interfaces
+          intuitivas com foco em acessibilidade e usabilidade. acredito em
           proporcionar às pessoas a mesma experiência que eu gostaria de ter,
           entregando o meu melhor em cada projeto.
         </SectionText>
       </section>
 
-      <section id="projetos" className="flex flex-col gap-4">
-        <SectionTitle>projetos</SectionTitle>
+      <section id="meu-trabalho" className="flex flex-col gap-4">
+        <SectionTitle>meu trabalho</SectionTitle>
         <SectionText>
-          Esses foram os projetos nos quais atuei, seja no processo de criação,
-          implementação ou manuntenção
+          esses foram os projetos em que estive envolvido:
         </SectionText>
         <ProjectsProvider>
           <ProjectGrid />
@@ -44,28 +43,28 @@ export function App() {
       <section id="contato" className="flex flex-col gap-4">
         <SectionTitle>onde me encontrar</SectionTitle>
         <SectionText>
-          Estou sempre aberto a novas oportunidades e desafios. Entre em contato
+          estou sempre aberto a novas oportunidades e desafios. entre em contato
           comigo!
         </SectionText>
 
         <div className="flex flex-col gap-2">
           <ContactLink
             icon={<Envelope size={18} className="shrink-0" />}
-            title="E-mail"
+            title="e-mail"
             linkTitle="sethwololo@gmail.com"
             linkHref="mailto:sethwololo@gmail.com"
           />
 
           <ContactLink
             icon={<LinkedinLogo size={18} />}
-            title="LinkedIn"
+            title="linkedin"
             linkTitle="linkedin.com/in/matheush5710"
             linkHref="https://linkedin.com/in/matheush5710"
           />
 
           <ContactLink
             icon={<GithubLogo size={18} className="shrink-0" />}
-            title="GitHub"
+            title="github"
             linkTitle="github.com/sethwololo"
             linkHref="https://github.com/sethwololo"
           />

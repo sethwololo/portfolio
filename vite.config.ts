@@ -13,4 +13,14 @@ export default defineConfig({
     tailwindcss(),
   ],
   base: '/portfolio',
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes('react') || id.includes('react-dom'))
+            return 'react-vendor'
+        },
+      },
+    },
+  },
 })
