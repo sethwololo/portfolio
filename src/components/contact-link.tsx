@@ -22,7 +22,7 @@ export function ContactLink({
           target="_blank"
           rel="noreferrer"
           href={linkHref}
-          className="text-viridian-green-600 hover:underline underline-offset-4 break-all"
+          className="text-indigo-600 hover:underline underline-offset-4 break-all"
         >
           {linkTitle}
         </a>

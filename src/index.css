@@ -24,18 +24,6 @@
   --animate-fade-in: fade-in 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --animate-fade-in-card: fade-in-card 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
-  --color-viridian-green-50: #f5f8f6;
-  --color-viridian-green-100: #e0e7e3;
-  --color-viridian-green-200: #c0cfc5;
-  --color-viridian-green-300: #98b0a1;
-  --color-viridian-green-400: #728f7d;
-  --color-viridian-green-500: #62816f;
-  --color-viridian-green-600: #455c4f;
-  --color-viridian-green-700: #3a4b42;
-  --color-viridian-green-800: #313e37;
-  --color-viridian-green-900: #2b3630;
-  --color-viridian-green-950: #161d1a;
-
   --default-font-family: 'Martian Mono', monospace;
 }
 
@@ -50,7 +38,7 @@
   *,
   *::before,
   *::after {
-    @apply box-border outline-viridian-green-500 outline-dashed outline-0;
+    @apply box-border outline-indigo-500 outline-dashed outline-0;
 
     &:focus-visible {
       @apply outline-2 outline-offset-2;
@@ -58,7 +46,7 @@
   }
 
   body {
-    @apply bg-stone-50 text-stone-700 text-base;
+    @apply bg-zinc-50 text-zinc-700 text-base;
   }
 
   html:has(dialog[open]:modal) {

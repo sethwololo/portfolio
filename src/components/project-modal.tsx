@@ -42,18 +42,18 @@ export function ProjectModal({ ref, projectId }: ProjectModalProps) {
         className={cn([
           'max-w-[calc(100%-1rem)] md:max-w-[680px] w-full flex flex-col overflow-hidden',
           'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
-          'bg-stone-50 shadow-2xl rounded-2xl border border-stone-300',
+          'bg-zinc-50 shadow-2xl rounded-2xl border border-zinc-300',
         ])}
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={closeModal}
-          className="absolute text-stone-700 top-3 right-3 rounded-md bg-stone-50 p-1 text-lg cursor-pointer hover:bg-red-500 hover:text-stone-50 transition-colors"
+          className="absolute text-zinc-700 top-3 right-3 rounded-md bg-zinc-50 p-1 text-lg cursor-pointer hover:bg-indigo-500 hover:text-zinc-50 transition-colors"
         >
           <X weight="bold" />
         </button>
 
-        <div className="w-full h-auto bg-stone-200 aspect-video border-b border-b-stone-300">
+        <div className="w-full h-auto bg-zinc-200 aspect-video border-b border-b-zinc-300">
           <img
             className="w-full h-full object-cover"
             src={window.location.href + project?.image}
@@ -68,10 +68,10 @@ export function ProjectModal({ ref, projectId }: ProjectModalProps) {
                 <LinkBreak
                   size={18}
                   weight="regular"
-                  className="text-stone-700"
+                  className="text-zinc-700"
                 />
               ) : (
-                <Link size={18} weight="regular" className="text-stone-700" />
+                <Link size={18} weight="regular" className="text-zinc-700" />
               )}
               <h1 className="inline-flex font-bold text-pretty flex-1">
                 {project?.url === '' ? (
@@ -81,7 +81,7 @@ export function ProjectModal({ ref, projectId }: ProjectModalProps) {
                     href={project?.url}
                     target="_blank"
                     rel="noreferrer"
-                    className=" hover:underline decoration-viridian-green-500 underline-offset-2"
+                    className=" hover:underline decoration-indigo-500 underline-offset-2"
                   >
                     {project?.name}
                   </a>
@@ -92,8 +92,8 @@ export function ProjectModal({ ref, projectId }: ProjectModalProps) {
               <a
                 href={project?.ghUrl}
                 className={cn([
-                  'block p-1.5 text-viridian-green-600 bg-viridian-green-100 w-fit aspect-square border border-transparent rounded transition-colors',
-                  'hover:bg-viridian-green-200 hover:text-viridian-green-600',
+                  'block p-1.5 text-indigo-600 bg-indigo-100 w-fit aspect-square border border-transparent rounded transition-colors',
+                  'hover:bg-indigo-200 hover:text-indigo-600',
                 ])}
                 title="Abrir no GitHub"
                 target="_blank"
@@ -103,12 +103,12 @@ export function ProjectModal({ ref, projectId }: ProjectModalProps) {
               </a>
             )}
           </div>
-          <div className="inline-flex gap-2 items-center text-viridian-green-600">
+          <div className="inline-flex gap-2 items-center text-indigo-600">
             <Stack weight="duotone" size={18} />
             <small className="text-sm italic ">{project?.stack}</small>
           </div>
 
-          <div className="flex gap-2 text-stone-600">
+          <div className="flex gap-2 text-zinc-600">
             <Quotes size={18} weight="duotone" className="shrink-0" />
             <p className="text-base sm:text-lg max-w-prose ">
               {project?.description}

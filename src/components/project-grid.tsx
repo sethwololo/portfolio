@@ -18,7 +18,7 @@ const PgButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => (
     type="button"
     className={cn(
       'flex items-center aspect-square p-2 rounded-full cursor-pointer bg-transparent',
-      'transition-colors text-stone-800 hover:bg-stone-200 disabled:bg-transparent',
+      'transition-colors text-zinc-800 hover:bg-zinc-200 disabled:bg-transparent',
       'disabled:opacity-50',
     )}
   />
@@ -87,7 +87,7 @@ export function ProjectGrid() {
               </label>
               <select
                 id="pagination-select"
-                className="appearance-none rounded-md px-3 py-1 border border-viridian-green-400 bg-transparent text-base focus:outline-0 focus-visible:outline-2"
+                className="appearance-none rounded-md px-3 py-1 border border-indigo-400 bg-transparent text-base focus:outline-0 focus-visible:outline-2"
                 value={currentPage}
                 onChange={(e) => setCurrentPage(Number(e.target.value))}
               >
@@ -95,7 +95,7 @@ export function ProjectGrid() {
                   <option
                     value={page}
                     key={`pagination-option-${page}`}
-                    className="bg-stone-50 text-stone-800"
+                    className="bg-zinc-50 text-zinc-800"
                   >
                     {page}
                   </option>

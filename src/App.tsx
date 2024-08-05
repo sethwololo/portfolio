@@ -12,9 +12,9 @@ export function App() {
 
   return (
     <main className="flex flex-col w-full gap-32 max-w-[1120px] mx-auto h-full p-4 pb-20">
-      <h1 className="flex flex-col max-w-fit my-32 sm:my-64 ml-auto text-stone-600">
+      <h1 className="flex flex-col max-w-fit my-32 sm:my-64 ml-auto text-zinc-600">
         <span className="text-2xl sm:text-4xl font-normal">olá, sou</span>
-        <strong className="text-4xl sm:text-6xl font-bold text-stone-700">
+        <strong className="text-4xl sm:text-6xl font-bold text-zinc-700">
           Matheus Bezerra
         </strong>
         <span className="text-xl self-end">desenvolvedor web</span>
