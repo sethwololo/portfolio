@@ -41,7 +41,7 @@
     "image": "/images/microblog-sn.webp"
   },
   {
-    "id": 6,
+    "id": 7,
     "name": "Scrollytelling Demo",
     "url": "https://sethwololo.github.io/scrollytelling/",
     "stack": "SolidJS, Typescript, Tailwind CSS",
