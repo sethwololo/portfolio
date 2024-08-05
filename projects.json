@@ -39,5 +39,13 @@
     "stack": "React, Typescript, TS Query, CSS Modules",
     "description": "O microblog do Senado Notícias é uma parte do site em que é possível acompanhar algumas notícias em tempo real. A reescrita do front-end do microblog foi um projeto particularmente desafiador devido ao número de posts em conteúdos como a CPI da Pandemia.",
     "image": "/images/microblog-sn.webp"
+  },
+  {
+    "id": 6,
+    "name": "Scrollytelling Demo",
+    "url": "https://sethwololo.github.io/scrollytelling/",
+    "stack": "SolidJS, Typescript, Tailwind CSS",
+    "description": "Esta demo de scrollytelling sincroniza um vídeo de fundo com o scroll da página. Textos relevantes aparecem em momentos específicos do vídeo, criando uma narrativa visual interativa. O usuário controla o ritmo da história simplesmente rolando a página.",
+    "image": "/images/scrollytelling.webp"
   }
 ]
