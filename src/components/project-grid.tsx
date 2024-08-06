@@ -1,13 +1,13 @@
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
+import axios from 'axios'
 import {
   type ButtonHTMLAttributes,
   Suspense,
-  useContext,
+  useEffect,
   useRef,
   useState,
 } from 'react'
 
-import { ProjectsContext } from '../contexts/ProjectsContext'
 import { cn } from '../utils/cn'
 import { ProjectCard } from './project-card'
 import { ProjectModal } from './project-modal'
@@ -24,8 +24,24 @@ const PgButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => (
   />
 )
 
+export type Project = {
+  id: number
+  name: string
+  url: string
+  ghUrl: string
+  stack: string
+  description: string
+  image: string
+}
+
 export function ProjectGrid() {
-  const projects = useContext(ProjectsContext)
+  const [projects, setProjects] = useState<Project[]>([])
+
+  useEffect(() => {
+    axios
+      .get(window.location.href + '/projects.json')
+      .then((res) => setProjects(res.data.reverse()))
+  }, [])
 
   const modalRef = useRef<HTMLDialogElement>(null)
   const [currentProjectId, setCurrentProjectId] = useState(0)
@@ -47,13 +63,18 @@ export function ProjectGrid() {
   }
 
   const handleOpenModal = (projectId: number) => {
-    setCurrentProjectId(projectId)
+    setCurrentProjectId(
+      projects.findIndex((project) => project.id === projectId),
+    )
     modalRef.current?.showModal()
   }
 
   return (
     <div className="flex flex-col gap-4">
-      <ProjectModal ref={modalRef} projectId={currentProjectId} />
+      <ProjectModal
+        ref={modalRef}
+        selectedProject={projects[currentProjectId]}
+      />
 
       <Suspense fallback="Carregando...">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 w-full">

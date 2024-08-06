@@ -4,7 +4,6 @@ import { ContactLink } from './components/contact-link'
 import { ProjectGrid } from './components/project-grid'
 import { SectionText } from './components/section-text'
 import { SectionTitle } from './components/section-title'
-import { ProjectsProvider } from './contexts/ProjectsContext'
 import { yearDiff } from './utils/yearDiff'
 
 export function App() {
@@ -35,9 +34,7 @@ export function App() {
         <SectionText>
           esses foram os projetos em que estive envolvido:
         </SectionText>
-        <ProjectsProvider>
-          <ProjectGrid />
-        </ProjectsProvider>
+        <ProjectGrid />
       </section>
 
       <section id="contato" className="flex flex-col gap-4">

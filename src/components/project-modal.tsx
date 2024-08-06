@@ -6,30 +6,28 @@ import {
   Stack,
   X,
 } from '@phosphor-icons/react'
-import {
-  forwardRef,
-  useContext,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-} from 'react'
+import { forwardRef, useImperativeHandle, useRef } from 'react'
 
-import { ProjectsContext } from '../contexts/ProjectsContext'
 import { cn } from '../utils/cn'
 
+type SelectedProject = {
+  id: number
+  name: string
+  url?: string
+  ghUrl?: string
+  stack: string
+  description: string
+  image: string
+}
+
 interface ProjectModalProps {
-  projectId: number
+  selectedProject?: SelectedProject
 }
 
 export const ProjectModal = forwardRef<HTMLDialogElement, ProjectModalProps>(
-  ({ projectId }, ref) => {
+  ({ selectedProject }, ref) => {
     const innerRef = useRef<HTMLDialogElement>(null)
     useImperativeHandle(ref, () => innerRef.current!, [])
-
-    const projects = useContext(ProjectsContext)
-    const project = useMemo(() => {
-      return projects.find((p) => p.id === projectId)
-    }, [projectId, projects])
 
     const closeModal = () => {
       innerRef.current?.close()
@@ -63,15 +61,15 @@ export const ProjectModal = forwardRef<HTMLDialogElement, ProjectModalProps>(
           <div className="w-full h-auto bg-zinc-200 aspect-video border-b border-b-zinc-300">
             <img
               className="w-full h-full object-cover"
-              src={window.location.href + project?.image}
-              alt={`Imagem demonstrativa do projeto "${project?.name}"`}
+              src={window.location.href + selectedProject?.image}
+              alt={`Imagem demonstrativa do projeto "${selectedProject?.name}"`}
             />
           </div>
 
           <div className="px-4 pt-4 pb-8 flex flex-col gap-4">
             <div className="flex gap-2 justify-between items-center">
               <div className="flex items-center gap-2 text-xl sm:text-3xl">
-                {project?.url === '' ? (
+                {selectedProject?.url === '' ? (
                   <LinkBreak
                     size={18}
                     weight="regular"
@@ -81,23 +79,23 @@ export const ProjectModal = forwardRef<HTMLDialogElement, ProjectModalProps>(
                   <Link size={18} weight="regular" className="text-zinc-700" />
                 )}
                 <h1 className="inline-flex font-bold text-pretty flex-1">
-                  {project?.url === '' ? (
-                    project?.name
+                  {selectedProject?.url === '' ? (
+                    selectedProject?.name
                   ) : (
                     <a
-                      href={project?.url}
+                      href={selectedProject?.url}
                       target="_blank"
                       rel="noreferrer"
                       className=" hover:underline decoration-indigo-500 underline-offset-2"
                     >
-                      {project?.name}
+                      {selectedProject?.name}
                     </a>
                   )}
                 </h1>
               </div>
-              {project?.ghUrl && (
+              {selectedProject?.ghUrl && (
                 <a
-                  href={project?.ghUrl}
+                  href={selectedProject?.ghUrl}
                   className={cn([
                     'block p-1.5 text-indigo-600 bg-indigo-100 w-fit aspect-square border border-transparent rounded transition-colors',
                     'hover:bg-indigo-200 hover:text-indigo-600',
@@ -112,13 +110,15 @@ export const ProjectModal = forwardRef<HTMLDialogElement, ProjectModalProps>(
             </div>
             <div className="inline-flex gap-2 items-center text-indigo-600">
               <Stack weight="duotone" size={18} />
-              <small className="text-sm italic ">{project?.stack}</small>
+              <small className="text-sm italic ">
+                {selectedProject?.stack}
+              </small>
             </div>
 
             <div className="flex gap-2 text-zinc-600">
               <Quotes size={18} weight="duotone" className="shrink-0" />
               <p className="text-base sm:text-lg max-w-prose ">
-                {project?.description}
+                {selectedProject?.description}
               </p>
             </div>
           </div>
