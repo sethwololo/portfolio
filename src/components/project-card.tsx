@@ -1,3 +1,5 @@
+import type { Component } from 'solid-js'
+
 import { cn } from '../utils/cn'
 
 interface ProjectCardProps {
@@ -7,26 +9,26 @@ interface ProjectCardProps {
   'aria-label'?: string
 }
 
-export function ProjectCard({ name, imageUrl, ...rest }: ProjectCardProps) {
+export const ProjectCard: Component<ProjectCardProps> = (props) => {
   return (
     <button
       type="button"
-      className={cn(
+      class={cn(
         'flex flex-col overflow-hidden cursor-pointer transition-colors',
         'bg-zinc-50 border border-zinc-300 rounded-xl shadow-sm',
         'hover:shadow-md hover:border-indigo-500',
       )}
-      {...rest}
+      {...props}
     >
-      <div className="bg-zinc-200 w-full h-auto aspect-video">
+      <div class="bg-zinc-200 w-full h-auto aspect-video">
         <img
-          src={window.location.href + imageUrl}
-          className="w-full h-auto object-cover aspect-video"
-          alt={`Imagem do projeto ${name}`}
+          src={window.location.href + props.imageUrl}
+          class="w-full h-auto object-cover aspect-video"
+          alt={`Imagem do projeto ${props.name}`}
         />
       </div>
-      <p className="block p-2 text-left truncate text-ellipsis w-full border-t text-base border-t-zinc-300">
-        {name}
+      <p class="block p-2 text-left truncate text-ellipsis w-full border-t text-base border-t-zinc-300">
+        {props.name}
       </p>
     </button>
   )

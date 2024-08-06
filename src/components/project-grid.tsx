@@ -1,26 +1,30 @@
-import { CaretLeft, CaretRight } from '@phosphor-icons/react'
-import axios from 'axios'
+import { TbChevronLeft, TbChevronRight } from 'solid-icons/tb'
 import {
-  type ButtonHTMLAttributes,
+  type Component,
+  createMemo,
+  createResource,
+  createSignal,
+  For,
+  type JSX,
   Suspense,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+} from 'solid-js'
 
 import { cn } from '../utils/cn'
+import { fetchProjects } from '../utils/fetchProjects'
+import { Modal } from './modal'
 import { ProjectCard } from './project-card'
-import { ProjectModal } from './project-modal'
 
-const PgButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => (
+const PageButton: Component<JSX.ButtonHTMLAttributes<HTMLButtonElement>> = (
+  props,
+) => (
   <button
-    {...props}
     type="button"
-    className={cn(
+    class={cn(
       'flex items-center aspect-square p-2 rounded-full cursor-pointer bg-transparent',
       'transition-colors text-zinc-800 hover:bg-zinc-200 disabled:bg-transparent',
       'disabled:opacity-50',
     )}
+    {...props}
   />
 )
 
@@ -35,103 +39,113 @@ export type Project = {
 }
 
 export function ProjectGrid() {
-  const [projects, setProjects] = useState<Project[]>([])
+  const [currentProjectId, setCurrentProjectId] = createSignal(0)
+  const [currentPage, setCurrentPage] = createSignal(1)
 
-  useEffect(() => {
-    axios
-      .get(window.location.href + '/projects.json')
-      .then((res) => setProjects(res.data.reverse()))
-  }, [])
+  const [data] = createResource(fetchProjects)
+  const projects = () => data()?.reverse() || []
 
-  const modalRef = useRef<HTMLDialogElement>(null)
-  const [currentProjectId, setCurrentProjectId] = useState(0)
+  let modalRef!: HTMLDialogElement
 
-  const itemsPerPage = 6
-  const pages = Math.ceil(projects.length / itemsPerPage)
-  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 6 as const
 
-  const handleNextPage = () => {
-    if (currentPage < pages) {
-      setCurrentPage(currentPage + 1)
+  const handleOpenModal = async (projectId: number) => {
+    setCurrentProjectId(projectId)
+    modalRef.showModal()
+  }
+
+  const numberOfPages = createMemo(() =>
+    Math.ceil(projects().length / itemsPerPage),
+  )
+
+  const nextPage = () => {
+    if (currentPage() < numberOfPages()) {
+      setCurrentPage(currentPage() + 1)
     }
   }
 
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1)
+  const previousPage = () => {
+    if (currentPage() > 1) {
+      setCurrentPage(currentPage() - 1)
     }
   }
 
-  const handleOpenModal = (projectId: number) => {
-    setCurrentProjectId(
-      projects.findIndex((project) => project.id === projectId),
-    )
-    modalRef.current?.showModal()
+  const goToPage = (page: number) => {
+    if (page >= 1 && page <= numberOfPages()) {
+      setCurrentPage(page)
+    }
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <ProjectModal
+    <div class="flex flex-col gap-4">
+      <Modal
         ref={modalRef}
-        selectedProject={projects[currentProjectId]}
+        selectedProject={projects().find(({ id }) => id === currentProjectId())}
       />
 
       <Suspense fallback="Carregando...">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 w-full">
-          {projects
-            .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-            .map((item) => (
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 w-full">
+          <For
+            each={projects().slice(
+              (currentPage() - 1) * itemsPerPage,
+              currentPage() * itemsPerPage,
+            )}
+          >
+            {(item) => (
               <ProjectCard
-                key={`project-${item.id}-card`}
                 name={item.name}
                 onClick={() => handleOpenModal(item.id)}
                 imageUrl={item.image}
                 aria-label={`Card do projeto ${item.name}`}
               />
-            ))}
+            )}
+          </For>
         </div>
 
         <nav aria-label="Paginação">
-          <ul className="flex items-center w-fit mx-auto gap-2">
+          <ul class="flex items-center w-fit mx-auto gap-2">
             <li>
-              <PgButton
+              <PageButton
                 aria-label="Anterior"
-                onClick={handlePreviousPage}
-                disabled={currentPage === 1}
+                onClick={previousPage}
+                disabled={currentPage() === 1}
               >
-                <CaretLeft weight="bold" />
-              </PgButton>
+                <TbChevronLeft />
+              </PageButton>
             </li>
-            <li className="text-base">
-              <label className="sr-only" htmlFor="pagination-select">
+            <li class="text-base">
+              <label class="sr-only" for="pagination-select">
                 Página selecionada:
               </label>
               <select
                 id="pagination-select"
-                className="appearance-none rounded-md px-3 py-1 border border-indigo-400 bg-transparent text-base focus:outline-0 focus-visible:outline-2"
-                value={currentPage}
-                onChange={(e) => setCurrentPage(Number(e.target.value))}
+                class="appearance-none rounded-md px-3 py-1 border border-indigo-400 bg-transparent text-base focus:outline-0 focus-visible:outline-2"
+                value={currentPage()}
+                onChange={(e) => goToPage(Number(e.target.value))}
               >
-                {Array.from({ length: pages }, (_, i) => i + 1).map((page) => (
-                  <option
-                    value={page}
-                    key={`pagination-option-${page}`}
-                    className="bg-zinc-50 text-zinc-800"
-                  >
-                    {page}
-                  </option>
-                ))}
+                <For
+                  each={Array.from(
+                    { length: numberOfPages() },
+                    (_, i) => i + 1,
+                  )}
+                >
+                  {(page) => (
+                    <option value={page} class="bg-zinc-50 text-zinc-800">
+                      {page}
+                    </option>
+                  )}
+                </For>
               </select>{' '}
-              de {pages}
+              de {numberOfPages()}
             </li>
             <li>
-              <PgButton
+              <PageButton
                 aria-label="Próximo"
-                onClick={handleNextPage}
-                disabled={currentPage === pages}
+                onClick={nextPage}
+                disabled={currentPage() === numberOfPages()}
               >
-                <CaretRight weight="bold" />
-              </PgButton>
+                <TbChevronRight />
+              </PageButton>
             </li>
           </ul>
         </nav>
