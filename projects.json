@@ -44,6 +44,7 @@
     "id": 7,
     "name": "Scrollytelling Demo",
     "url": "https://sethwololo.github.io/scrollytelling/",
+    "ghUrl": "https://github.com/sethwololo/scrollytelling/",
     "stack": "SolidJS, Typescript, Tailwind CSS",
     "description": "Esta demo de scrollytelling sincroniza um vídeo de fundo com o scroll da página. Textos relevantes aparecem em momentos específicos do vídeo, criando uma narrativa visual interativa. O usuário controla o ritmo da história simplesmente rolando a página.",
     "image": "/images/scrollytelling.webp"
