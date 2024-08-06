@@ -21,5 +21,9 @@ export const ProjectsProvider = ({ children }: PropsWithChildren) => {
       .then((data) => setProjects(data.reverse()))
   }, [])
 
-  return <ProjectsContext value={projects}>{children}</ProjectsContext>
+  return (
+    <ProjectsContext.Provider value={projects}>
+      {children}
+    </ProjectsContext.Provider>
+  )
 }

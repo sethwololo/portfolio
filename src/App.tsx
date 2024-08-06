@@ -42,10 +42,6 @@ export function App() {
 
       <section id="contato" className="flex flex-col gap-4">
         <SectionTitle>onde me encontrar</SectionTitle>
-        <SectionText>
-          estou sempre aberto a novas oportunidades e desafios. entre em contato
-          comigo!
-        </SectionText>
 
         <div className="flex flex-col gap-2">
           <ContactLink

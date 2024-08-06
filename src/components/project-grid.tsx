@@ -2,7 +2,7 @@ import { CaretLeft, CaretRight } from '@phosphor-icons/react'
 import {
   type ButtonHTMLAttributes,
   Suspense,
-  use,
+  useContext,
   useRef,
   useState,
 } from 'react'
@@ -25,7 +25,7 @@ const PgButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => (
 )
 
 export function ProjectGrid() {
-  const projects = use(ProjectsContext)
+  const projects = useContext(ProjectsContext)
 
   const modalRef = useRef<HTMLDialogElement>(null)
   const [currentProjectId, setCurrentProjectId] = useState(0)
