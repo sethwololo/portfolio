@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: '/portfolio',
   build: {
+    target: 'es2020',
     rollupOptions: {
       output: {
         manualChunks: (id) => {
