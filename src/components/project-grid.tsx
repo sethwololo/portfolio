@@ -20,8 +20,8 @@ const PageButton: Component<JSX.ButtonHTMLAttributes<HTMLButtonElement>> = (
   <button
     type="button"
     class={cn(
-      'flex items-center aspect-square p-2 rounded-full cursor-pointer bg-transparent',
-      'transition-colors text-zinc-800 hover:bg-zinc-200 disabled:bg-transparent',
+      'flex aspect-square cursor-pointer items-center rounded-full bg-transparent p-2',
+      'text-zinc-800 transition-colors hover:bg-zinc-200 disabled:bg-transparent',
       'disabled:opacity-50',
     )}
     {...props}
@@ -84,7 +84,7 @@ export function ProjectGrid() {
       />
 
       <Suspense fallback="Carregando...">
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 w-full">
+        <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           <For
             each={projects().slice(
               (currentPage() - 1) * itemsPerPage,
@@ -103,7 +103,7 @@ export function ProjectGrid() {
         </div>
 
         <nav aria-label="Paginação">
-          <ul class="flex items-center w-fit mx-auto gap-2">
+          <ul class="mx-auto flex w-fit items-center gap-2">
             <li>
               <PageButton
                 aria-label="Anterior"
@@ -119,7 +119,7 @@ export function ProjectGrid() {
               </label>
               <select
                 id="pagination-select"
-                class="appearance-none rounded-md px-3 py-1 border border-indigo-400 bg-transparent text-base focus:outline-0 focus-visible:outline-2"
+                class="appearance-none rounded-md border border-indigo-400 bg-transparent px-3 py-1 text-base focus:outline-0 focus-visible:outline-2"
                 value={currentPage()}
                 onChange={(e) => goToPage(Number(e.target.value))}
               >

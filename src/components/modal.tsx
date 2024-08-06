@@ -8,6 +8,7 @@ import {
 } from 'solid-icons/tb'
 import { type Component } from 'solid-js'
 
+import { baseURL } from '../utils/baseURL'
 import { cn } from '../utils/cn'
 
 type SelectedProject = {
@@ -42,9 +43,9 @@ export const Modal: Component<ModalProps> = (props) => {
     >
       <div
         class={cn([
-          'max-w-[calc(100%-1rem)] md:max-w-[680px] w-full flex flex-col overflow-hidden',
-          'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
-          'bg-zinc-50 shadow-2xl rounded-2xl border border-zinc-300',
+          'flex w-full max-w-[calc(100%-1rem)] flex-col overflow-hidden md:max-w-[680px]',
+          'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
+          'rounded-2xl border border-zinc-300 bg-zinc-50 shadow-2xl',
         ])}
         onClick={(e) => e.stopPropagation()}
       >
@@ -52,28 +53,28 @@ export const Modal: Component<ModalProps> = (props) => {
           onClick={(e) => {
             e.currentTarget.closest('dialog')?.close()
           }}
-          class="absolute text-zinc-700 top-3 right-3 rounded-md bg-zinc-50 p-1 text-lg cursor-pointer hover:bg-indigo-500 hover:text-zinc-50 transition-colors"
+          class="absolute right-3 top-3 cursor-pointer rounded-md bg-zinc-50 p-1 text-lg text-zinc-700 transition-colors hover:bg-indigo-500 hover:text-zinc-50"
         >
           <TbX />
         </button>
 
-        <div class="w-full h-auto bg-zinc-200 aspect-video border-b border-b-zinc-300">
+        <div class="aspect-video h-auto w-full border-b border-b-zinc-300 bg-zinc-200">
           <img
-            class="w-full h-full object-cover"
-            src={window.location.href + selectedProject()?.image}
+            class="aspect-video h-auto w-full object-cover"
+            src={baseURL + selectedProject()?.image}
             alt={`Imagem demonstrativa do projeto "${selectedProject()?.name}"`}
           />
         </div>
 
-        <div class="px-4 pt-4 pb-8 flex flex-col gap-4">
-          <div class="flex gap-2 justify-between items-center">
+        <div class="flex flex-col gap-4 px-4 pb-8 pt-4">
+          <div class="flex items-center justify-between gap-2">
             <div class="flex items-center gap-2 text-xl sm:text-3xl">
               {selectedProject()?.url === '' ? (
                 <TbLinkOff size={18} class="text-zinc-700" />
               ) : (
                 <TbLink size={18} class="text-zinc-700" />
               )}
-              <h1 class="inline-flex font-bold text-pretty flex-1">
+              <h1 class="inline-flex flex-1 text-pretty font-bold">
                 {selectedProject()?.url === '' ? (
                   selectedProject()?.name
                 ) : (
@@ -81,7 +82,7 @@ export const Modal: Component<ModalProps> = (props) => {
                     href={selectedProject()?.url}
                     target="_blank"
                     rel="noreferrer"
-                    class=" hover:underline decoration-indigo-500 underline-offset-2"
+                    class="decoration-indigo-500 underline-offset-2 hover:underline"
                   >
                     {selectedProject()?.name}
                   </a>
@@ -92,7 +93,7 @@ export const Modal: Component<ModalProps> = (props) => {
               <a
                 href={selectedProject()?.ghUrl}
                 class={cn([
-                  'block p-1.5 text-indigo-600 bg-indigo-100 w-fit aspect-square border border-transparent rounded transition-colors',
+                  'block aspect-square w-fit rounded border border-transparent bg-indigo-100 p-1.5 text-indigo-600 transition-colors',
                   'hover:bg-indigo-200 hover:text-indigo-600',
                 ])}
                 title="Abrir no GitHub"
@@ -103,14 +104,14 @@ export const Modal: Component<ModalProps> = (props) => {
               </a>
             )}
           </div>
-          <div class="inline-flex gap-2 items-center text-indigo-600">
+          <div class="inline-flex items-center gap-2 text-indigo-600">
             <TbStack size={18} />
-            <small class="text-sm italic ">{selectedProject()?.stack}</small>
+            <small class="text-sm italic">{selectedProject()?.stack}</small>
           </div>
 
           <div class="flex gap-2 text-zinc-600">
             <TbCode size={18} class="shrink-0" />
-            <p class="text-base sm:text-lg max-w-prose ">
+            <p class="max-w-prose text-base sm:text-lg">
               {selectedProject()?.description}
             </p>
           </div>

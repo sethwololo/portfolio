@@ -19,7 +19,7 @@ export const ContactLink: Component<ContactLinkProps> = (props) => {
           target="_blank"
           rel="noreferrer"
           href={props.linkHref}
-          class="text-indigo-600 hover:underline underline-offset-4 break-all"
+          class="break-all text-indigo-600 underline-offset-4 hover:underline"
         >
           {props.linkTitle}
         </a>

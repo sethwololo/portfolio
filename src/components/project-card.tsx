@@ -1,5 +1,6 @@
 import type { Component } from 'solid-js'
 
+import { baseURL } from '../utils/baseURL'
 import { cn } from '../utils/cn'
 
 interface ProjectCardProps {
@@ -14,20 +15,20 @@ export const ProjectCard: Component<ProjectCardProps> = (props) => {
     <button
       type="button"
       class={cn(
-        'flex flex-col overflow-hidden cursor-pointer transition-colors',
-        'bg-zinc-50 border border-zinc-300 rounded-xl shadow-sm',
-        'hover:shadow-md hover:border-indigo-500',
+        'flex cursor-pointer flex-col overflow-hidden transition-colors',
+        'rounded-xl border border-zinc-300 bg-zinc-50 shadow-sm',
+        'hover:border-indigo-500 hover:shadow-md',
       )}
       {...props}
     >
-      <div class="bg-zinc-200 w-full h-auto aspect-video">
+      <div class="aspect-video h-auto w-full bg-zinc-200">
         <img
-          src={window.location.href + props.imageUrl}
-          class="w-full h-auto object-cover aspect-video"
+          src={baseURL + props.imageUrl}
+          class="aspect-video h-auto w-full object-cover"
           alt={`Imagem do projeto ${props.name}`}
         />
       </div>
-      <p class="block p-2 text-left truncate text-ellipsis w-full border-t text-base border-t-zinc-300">
+      <p class="block w-full truncate text-ellipsis border-t border-t-zinc-300 p-2 text-left text-base">
         {props.name}
       </p>
     </button>

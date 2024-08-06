@@ -13,11 +13,11 @@ const Root: Component<JSX.HTMLAttributes<'section'>> = (props) => {
 const Title: Component<{ children: JSX.Element }> = (props) => {
   return (
     <h2
-      class="leading-none text-xl sm:text-2xl font-bold focus-visible:outline-0 focus-visible:underline focus-visible:decoration-indigo-500 underline-offset-8"
+      class="text-xl font-bold leading-none underline-offset-8 focus-visible:underline focus-visible:decoration-indigo-500 focus-visible:outline-0 sm:text-2xl"
       tabIndex={0}
     >
       <span
-        class="font-bold text-indigo-500 select-none leading-none"
+        class="select-none font-bold leading-none text-indigo-500"
         aria-hidden
       >
         ❯{' '}
@@ -29,7 +29,7 @@ const Title: Component<{ children: JSX.Element }> = (props) => {
 
 const Text: Component<{ children: JSX.Element }> = (props) => {
   return (
-    <p class="text-md sm:text-lg text-pretty max-w-[80ch] pl-1 text-zinc-600">
+    <p class="text-md max-w-[80ch] text-pretty pl-1 text-zinc-600 sm:text-lg">
       {props.children}
     </p>
   )
